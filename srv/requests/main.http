@@ -1,6 +1,12 @@
 @server = http://localhost:4004
 @auth = Authorization: Basic alice:
 
+### Main.Customers
+GET {{server}}/main/Customers
+Content-Type: application/json
+{{auth}}
+
+
 ### Main.Orders
 GET {{server}}/main/Orders
 Content-Type: application/json
