@@ -1,0 +1,56 @@
+@server = http://localhost:4004
+@auth = Authorization: Basic alice:
+
+### Main.Orders
+GET {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+
+### Main.Customers
+GET {{server}}/main/Customers?$expand=orders
+Content-Type: application/json
+{{auth}}
+
+### Main.Orders
+GET {{server}}/main/Orders?$expand=customer
+Content-Type: application/json
+{{auth}}
+
+
+### Main.Customers
+POST {{server}}/main/Customers
+Content-Type: application/json
+{{auth}}
+
+{
+  "name": "Pedro",
+  "age": 60
+}
+
+### Main.Orders
+POST {{server}}/main/Orders
+Content-Type: application/json
+{{auth}}
+
+{
+  "amount" : 20.00,
+  "customer_ID" : "1c465f28-3ccb-40bf-b8cf-f1aed3d36310"
+}
+
+### Main.Customers
+PATCH {{server}}/main/Customers(3)
+Content-Type: application/json
+{{auth}}
+
+
+{
+  "name:" : "Carlos",
+  "age": 46
+}
+
+### Main.Customers
+DELETE {{server}}/main/Customers(1)
+Content-Type: application/json
+{{auth}}
+
